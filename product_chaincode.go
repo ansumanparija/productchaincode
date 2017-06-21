@@ -132,12 +132,12 @@ func (t *SimpleChaincode) addProduct(stub shim.ChaincodeStubInterface, args []st
 	if len(args) != 4 {
 		return nil, errors.New("Incorrect Number of arguments.Expecting 4 for addProduct")
 	}
-	amt, err := strconv.ParseFloat(args[1], 64)
+	//amt, err := strconv.ParseFloat(args[1], 64)
 	
 
 	product := Product{
 		Pan:   args[0],
-		Tech: tech,
+		Tech: args[1],
 		Startdate: args[2],
 		EndDate: args[3],
 	}
