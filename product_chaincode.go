@@ -26,10 +26,10 @@ import (
 
 //Product - Structure for products used in buy goods
 type Product struct {
-	Name   string  `json:"name"`
-	Amount float64 `json:"amount"`
-	Owner string  `json:"owner"`
-	Productid string     `json:"productid"`
+	Pan   string  `json:"pan"`
+	Tech string `json:"tech"`
+	Startdate string  `json:"startdate"`
+	EndDate string     `json:"enddate"`
 }
 
 // SimpleChaincode example simple Chaincode implementation
@@ -136,10 +136,10 @@ func (t *SimpleChaincode) addProduct(stub shim.ChaincodeStubInterface, args []st
 	
 
 	product := Product{
-		Name:   args[0],
-		Amount: amt,
-		Owner: args[2],
-		Productid: args[3],
+		Pan:   args[0],
+		Tech: tech,
+		Startdate: args[2],
+		EndDate: args[3],
 	}
 
 	bytes, err := json.Marshal(product)
@@ -148,7 +148,7 @@ func (t *SimpleChaincode) addProduct(stub shim.ChaincodeStubInterface, args []st
 		return nil, errors.New("Error marshaling product")
 	}
 
-	err = stub.PutState(product.Productid, bytes)
+	err = stub.PutState(product.Pan, bytes)
 	if err != nil {
 		return nil, err
 }
